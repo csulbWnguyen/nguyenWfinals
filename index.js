@@ -32,6 +32,10 @@ app.get("/sum", (req, res) => {
 });
 
 //get input from user: 
+//imagine got numbers 8 and 10 increment 1 (start 8 end 10) (8+9+10)
+//We need a function
+//get array 8,9,10
+//get array to add together.
 
 app.post("/sum"),(req,res) =>{
   number1 = document.getElementById("starting");
@@ -54,12 +58,18 @@ app.post("/sum"),(req,res) =>{
     message =`The sum of the numbers from ${number1} to ${number2} incremented by 2 is ${sum}`
   }
   document.getElementById("result").appendChild(message);
-  res.render("sum");
+  res.render("sum",
+  {
+    message: message
+  });
 }
 
 
 app.get("/import", (req, res) => {
   res.render("import");});
+
+
+
 
   app.post("/import",  upload.single('filename'), (req, res) => {
     if(!req.file || Object.keys(req.file).length === 0) {
@@ -71,11 +81,11 @@ app.get("/import", (req, res) => {
     const lines = buffer.toString().split(/\r?\n/);
 
     lines.forEach(line => {
-         //console.log(line);
-         book = line.split(",");
+        //res send
+         product = line.split(",");
          //console.log(product);
          const sql = "INSERT INTO book(book_id, title, total_pages, rating, isbn, published_date) VALUES ($1, $2, $3, $4, $5, $6)";
-         pool.query(sql, book, (err, result) => {
+         pool.query(sql, product, (err, result) => {
              if (err) {
                  console.log(`Insert Error.  Error message: ${err.message}`);
              } else {
