@@ -1,0 +1,24 @@
+<%- include("_header") -%>
+
+<h1>Calculate Sum of a Series</h1>
+<form class="form-horizontal" enctype="multipart/form-data" action="sum" name = "sumSeries" method="POST">
+    <table>
+        <tr>
+        <td>Starting Number<input type="number" name="starting" id="starting" required`>required</td>
+        </tr>
+        <tr>
+        <td>Ending Number<input type="number" name=ending" id = "ending" required>required</td>
+        </tr>
+        <tr>
+        <td>Increment<input type="number" name="increment" id = "increment" required>required</td>
+        </tr>
+        <tr>
+        <td colspan="2"><input type="submit" value="Calculate" > Calculate Sum</td>
+        </tr>
+    </table>
+</form>
+
+<p id="result"></p>
+
+
+<%- include("_footer") -%>

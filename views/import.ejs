@@ -1,0 +1,36 @@
+<%- include("_header") -%>
+
+<a>Select a file with books for database insert</a>
+<form>
+    <input type="file" name = "filename" required><p></p>
+    <input type="submit">
+</form>
+
+<script>
+    document.querySelector("file").addEventListener("submit", e=>
+    {
+        e.preventDefault();
+        const formData = new formData(e.target);
+        fetch("/input", {
+            method:"POST",
+            body:formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            const resultElement = document.getElementById("result");
+            if (data.substring(0,5) === "Error"){
+                resultElement.innerText =`Error occured! ${data}`
+            }
+            else {
+                resultElement.innerText = data;
+            };
+        })
+        .catch(err =>{
+            document.getElementById("message").textContent = `Error: ${err.message}`;
+        });
+    });
+</script>
+
+
+<p id="result"></p>
+<%- include("_footer") -%>
